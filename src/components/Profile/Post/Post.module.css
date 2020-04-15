@@ -1,0 +1,10 @@
+.item{
+    color: #7B1FA2;
+}
+
+
+.item img{
+    width: 50px;
+    overflow: hidden;
+    border-radius: 35px;
+}

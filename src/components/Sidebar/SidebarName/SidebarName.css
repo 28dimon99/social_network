@@ -1,0 +1,16 @@
+.people{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+
+}
+
+.manItem {
+    padding: 10px;
+    color: white;
+}
+
+
+.manItem  .active{
+    color: gold;
+}
+

@@ -1,0 +1,14 @@
+.profile{
+    grid-area: c;
+    background-color: #039be5;
+}
+.profile img{
+    width: 50%;
+}
+
+.profile .photoAva img{
+    width: 30%;
+}
+
+
+
