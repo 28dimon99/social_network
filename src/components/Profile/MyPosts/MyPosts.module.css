@@ -1,7 +1,13 @@
 .postBlock{
-    padding: 10px;
+    display: grid;
+    padding: 20px;
+
 }
-.posts{
-    margin-top: 10px;
+.posts {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 10px;
+    grid-gap: 10px;
+
 }
 

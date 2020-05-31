@@ -1,11 +1,10 @@
 import {profileAPI, usersAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
-import * as Promise from "pinkie";
 
 
 
-const ADD_DOCTOR = 'ADD-DOCTOR';
-const UPDATE_NEW_POST_TEXT_DOCTOR = 'UPDATE-NEW-POST-TEXT-DOCTOR';
+
+const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
@@ -14,9 +13,9 @@ const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState = {
   posts: [
-    {id: 1, message: "Doctor 1!!!", likesCount: 12},
-    {id: 2, message: "Doctor 2!!!", likesCount: 11},
-    {id: 3, message: "Doctor 3!!!", likesCount: 10}
+    {id: 1, message: "People 1!!!", likesCount: 12},
+    {id: 2, message: "People 2!!!", likesCount: 11},
+    {id: 3, message: "People 3!!!", likesCount: 10}
 
   ],
 
@@ -31,7 +30,7 @@ let initialState = {
 
 const profileReducer = (state = initialState , action) => {
   switch (action.type) {
-    case ADD_DOCTOR:{
+    case ADD_POST:{
       let newPost = {
         id: 5,
         message: action.newPostText,
@@ -45,12 +44,6 @@ const profileReducer = (state = initialState , action) => {
       }
 
     }
-
-    case UPDATE_NEW_POST_TEXT_DOCTOR:{
-      let stateCopy = {...state};
-      stateCopy.newPostText = action.newPost;
-      return stateCopy;
-    }
     case SET_STATUS:{
      return{
        ...state,
@@ -59,7 +52,7 @@ const profileReducer = (state = initialState , action) => {
     }
 
     case SET_USER_PROFILE:{
-      return {...state, profile:action.profile}
+      return {...state, profile: action.profile}
     }
 
     case DELETE_POST :
@@ -72,33 +65,15 @@ const profileReducer = (state = initialState , action) => {
         ...state, profile:
           {...state.profile, photos: action.photos}
       };
-
-   /* case SAVE_PROFILE:
-      return{
-        ...state,
-        profile:action.profile
-      };*/
     default:
       return state;
   }
 };
-export const addDoctorActionCreator = (newPostText) => {
-  return {
-    type: ADD_DOCTOR, newPostText
-  }
-};
-
-export const updateNewPostTextDoctorActionCreator = (newPost) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT_DOCTOR,
-    newText: newPost
-  }
-};
-export const addPostActionCreator = (newPostText) => ({type: ADD_DOCTOR, newPostText});//сокращенная запись ф-ц кот возв
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});//сокращенная запись ф-ц кот возв
 export const setUserProfile = (profile) =>({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) =>({type: SET_STATUS, status});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
-//export const saveProfileSuccess = (profile) => ({type: SAVE_PROFILE, profile});
+
 
 
 //thunks для получения ajax запросов
@@ -114,27 +89,24 @@ export const getStatus = (id) => async(dispatch) =>{
 };
 
 export const updateStatus = (status) => async(dispatch) =>{
-  try{
-    let response = await profileAPI.getStatus(status);
+    let response = await profileAPI.updateStatus(status);
     if(response.data.resultCode === 0) {
-      dispatch(setStatus(response.data));
+      dispatch(setStatus(status));
     }
-  }catch(error){
-    //dispatch
   }
+;
 
-};
-
-export const savePhoto = (file) => async (dispatch) => {
+export const savePhoto = (file) => async(dispatch) => {
   const response = await profileAPI.savePhoto(file);
   if (response.data.resultCode === 0) {
     dispatch(savePhotoSuccess(response.data.data.photos));
   }
 };
 
-export const saveProfile = (profile) => async (dispatch, getState) => {
+export const saveProfile = (profile) => async(dispatch, getState) => {
   const userId = getState().auth.userId;
   const response = await profileAPI.saveProfile(profile);
+
   if (response.data.resultCode === 0){
   dispatch(getUserProfile(userId));
   }else{

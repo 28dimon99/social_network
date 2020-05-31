@@ -4,9 +4,8 @@ import {createField, Input} from "../common/FormsControls/FormsControls" ;
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/authReduser";
-import {Redirect} from "react-router-dom";
 import s from "../common/FormsControls/FormControls.module.css"
-
+import {Redirect} from "react-router-dom";
 
 const LoginForm = ({handleSubmit, error, captchaUrl}) => {
   return (
@@ -16,21 +15,12 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
       {createField("Password", "password", [required], Input, {type: "password"})}
       {createField(null, "rememberMe", [], Input, {type:"checkbox"}, "remember me")}
 
-      {/*     <Field placeholder={"Email"} name={"email"}
-               validate={[required]}
-               component={Input}/>*/}
-
-        {/*<Field placeholder={"Password"} name={"password"} type={"password"}
-               validate={[required]}
-               component={Input}/>
-      */}
-
-        {/*<Field name={"rememberMe"} type={"checkbox"} component={Input}/> remember me*/}
       {captchaUrl && <img src={captchaUrl}/>}
-
-      {error && <div className={s.formSummaryError}>
         {captchaUrl && createField("Symbols from image", "captcha", [required], Input, {})}
-        {error}
+
+
+        {error && <div className={s.formSummaryError}>
+            {error}
       </div>
       }
       <div>
@@ -61,4 +51,4 @@ const mapStateToProps = (state) => ({
   captchaUrl: state.auth.captchaUrl,
   isAuth: state.auth.isAuth
 });
-export default connect(mapStateToProps, {login})(Login)
+export default connect(mapStateToProps, {login})(Login);

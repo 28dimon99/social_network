@@ -2,43 +2,39 @@ import React from "react"
 import s from "./Dialogs.module.css"
 import DialogsItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {AddMessageForm} from "./Message/AddMessageForm";
+import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form"
+import AddMessageForm from "./Message/AddMessageForm";
 
 
 
 
 const Dialogs = (props) => {
 
-  let state = props.dialogPage;
-  let dialogElements = state.dialogs.map(d => <DialogsItem name={d.name} key={d.id} id={d.id}/>)
-  let messageElements = state.messages.map(m => <Message message={m.message} key={m.id}/>);
-  let newPostMessage = state.newPostMessage;
+    let state = props.dialogPage;
 
-  let addMessageDialog = (values)=>{
-    props.addMessage(values.newPostMessage)
+    let dialogsElements = state.dialogs.map(d => <DialogsItem name={d.name} key={d.id} id={d.id}/>);
+    let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id}/>);
+    let newMessageBody = state.newMessageBody;
+
+  let addNewMessage = (values)=>{
+    props.sendMessage(values.newMessageBody)
   };
+
+  if(!props.isAuth) return <Redirect to={"/login"} />;
 
   return (
     <div className={s.dialogs}>
-      <div>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLYT_PrdiB-Or6WGKRpkEkGZQbqb6pEoS1f45W7PC17TmY8pCNcQ&s"/>
+      <div className={s.dialogsItems}>
+        {dialogsElements}
       </div>
-      <div>
-        <h3>Add message</h3>
-      </div>
-      <div>
-       <AddMessageForm onSubmit={addMessageDialog}/>
-      </div>
-      <div className={s.dialogItems}>
-        {dialogElements}
-      </div>
-
       <div className={s.messages}>
-        {messageElements}
+        {messagesElements}
       </div>
+        <AddMessageForm onSubmit={addNewMessage}/>
     </div>
   )
 };
 
-export default Dialogs;
+
+export default Dialogs

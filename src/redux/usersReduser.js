@@ -25,17 +25,10 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
 
   switch (action.type) {
-
     case FOLLOW:
       return {
         ...state,
         users: updateObjectInArray(state.userId, "id", {followed: true})
-  /*      users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return {...u, followed: true}
-          }
-          return u;
-        })*/
       };
 
 
@@ -43,12 +36,6 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: updateObjectInArray(state.userId, "id", {followed: false})
-        /*users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return {...u, followed: false}
-          }
-          return u;
-        })*/
       };
     case SET_USERS:{
       return {...state, users: action.users};
@@ -70,7 +57,7 @@ const usersReducer = (state = initialState, action) => {
       return {...state,
             followingInProgress: action.isFetching
           ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter(userId => userId != action.userId)
+          : state.followingInProgress.filter(id => id != action.userId)
       }
     }
 

@@ -1,20 +1,19 @@
 import React from 'react'
 import s from './Profile.module.css'
-import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-
-
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
 const Profile = (props) => {
 
   return (
     <div className={s.profile}>
-      <ProfileInfoContainer
+      <ProfileInfo
                             savePhoto={props.savePhoto}
                             isOwner={props.isOwner}
                             profile={props.profile}
                             status={props.status}
+                            saveProfile={props.saveProfile}
                             updateStatus={props.updateStatus}
       />
       <MyPostsContainer/>

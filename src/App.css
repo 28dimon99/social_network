@@ -1,4 +1,4 @@
-*{
+/**{
   padding: 0;
   margin: 0;
 }
@@ -18,7 +18,7 @@
 .app-wrapper-content{
   grid-area: c;
   background-color: darkseagreen;
-}
+}*/
 
 
 

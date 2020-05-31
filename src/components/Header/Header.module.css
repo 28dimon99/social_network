@@ -1,13 +1,52 @@
-.header{
-    grid-area: h;
-    background-color: green;
+.blockBody{
+    display: grid;
+    grid-area: header;
+    background-color: #039be5;
+    padding: 10px;
+
 }
 
-.header img{
-    width: 50px;
+@media (min-width: 750px) {
+
+   .topMenu{grid-template-columns: none}
 }
 
-.loginBlock{
-    float: right;
+
+.logo h1{
+     display: grid;
+     height: 50px;
+     font-size: 17px;
+     float: left;
+     color: white;
+     padding-left:10px;
+     margin-right: 80px;
+ }
+
+.topMenu{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+.topMenu a{
+    color:white;
+    font-size: 14px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.icon{
+    display: none;
     color: white;
+    font-size: 14px;
 }
+
+
+.topMenu a:hover{
+    transition: all 0.5s ease;
+    color: gold;
+}
+
+
+
+

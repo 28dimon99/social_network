@@ -6,11 +6,10 @@ import s from"../Profile.module.css"
 import ProfileDataForm from "./ProfileDataForm"
 
 
-const ProfileInfoTest = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
 
   let [editMode, setEditMode] = useState(false);
   if (!profile) {
-
     return <Preloader/>
   }
   const onMainPhotoSelected =(e) =>{
@@ -20,16 +19,15 @@ const ProfileInfoTest = ({profile, status, updateStatus, isOwner, savePhoto, sav
   };
 
   const onSubmit = (formData) =>{
-    saveProfile(formData).then(() => {
-         setEditMode(false);
-      });
+      saveProfile(formData).then(() => {
+         setEditMode(false)});
 
   };
-  return (
-    <div>
-      <div className={s.descriptionBlock}>
-        <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
 
+  return (
+    <div className={s.descriptionBlock}>
+      <div>
+        <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
         {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
 
         {editMode
@@ -73,4 +71,4 @@ const Contact = ({contactTitle, contactValue}) =>{
   return <div className={s.contact}><b>{contactTitle}</b>:<b>{contactValue}</b>:</div>
 };
 
-export default ProfileInfoTest;
+export default ProfileInfo;

@@ -1,7 +1,4 @@
-.contact{
-    padding-left: 50px;
-}
-
-.mainPhoto{
-
+.form{
+    display: grid;
+    padding: 20px;
 }

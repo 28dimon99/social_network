@@ -3,38 +3,38 @@ import React from 'react'
 class Receptions extends  React.Component{
   constructor(props){
     super(props);
-    this.state={surname:'',name:'',year:'',specialist:''}
-
+    //Устанавливаем состояние(state)
+    this.state={surname:'',name:'',year:'',specialist:''};
+    //Привязка контекста к методам
     this.onChangeSurname = this.onChangeSurname.bind(this);
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeYear = this.onChangeYear.bind(this);
     this.onChangeSpecialist = this.onChangeSpecialist.bind(this);
-
     this.onSubmit = this.onSubmit.bind(this);
   }
-
+  //Метод который меняет фамилию
   onChangeSurname(event){
     this.setState({surname: event.target.value})
   }
+  //Метод который меняет имя
   onChangeName(event){
     this.setState({name: event.target.value})
   }
-
+  //Метод который меняет год
   onChangeYear(event){
     this.setState({year: event.target.value})
   }
-
+  //Метод который меняет специальность
   onChangeSpecialist(event){
     this.setState({specialist: event.target.value})
   }
 
-
+ //Метод отрисовки всех полей формы
   onSubmit(event) {
     alert(`Вы ввели Фамилию: ${this.state.surname} 
     Вы ввели имя: ${this.state.name}
     Вы ввели год: ${this.state.year}
     Вы выбрали направление ${this.state.specialist}`);
-
     event.preventDefault();
   }
 

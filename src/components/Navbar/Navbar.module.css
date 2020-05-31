@@ -1,16 +1,22 @@
 .nav {
-    grid-area: n;
-    background-color: #039be5;
-    padding: 20px;
+    display: grid;
+    grid-area: navbar;
+    background-color:#CCCCCC;
+
 }
 
 .item a {
-    color: white;
-    padding: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    padding: 5px;
+    color: black;
     text-decoration: none;
     cursor: pointer;
-}
+    text-align: center;
+    font-weight: bold;
 
-.item a.active {
-    color: gold;
+}
+.item a:hover{
+    background-color: white;
 }

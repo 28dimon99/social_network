@@ -5,18 +5,18 @@ import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import s from"../../common/FormsControls/FormControls.module.css"
 
 const maxLength50 = maxLengthCreator(50);
-const AddNewMessage = (props) =>{
+const AddMessageForm = (props) =>{
   return(
     <form className={s.formControl} onSubmit={props.handleSubmit}>
       <Field component={Textarea}
              validate={[required, maxLength50 ]}
-             name="newPostMessage"
+             name="newMessageBody"
              placeholder="ENTER YOUR MESSAGE"/>
       <div>
-        <button>AddMessage</button>
+        <button>Send</button>
       </div>
     </form>
   )
 };
 
-export const AddMessageForm = reduxForm({form:"dialogAddMessageForm"})(AddNewMessage)
+export default reduxForm({form:"dialogAddMessageForm"})(AddMessageForm)

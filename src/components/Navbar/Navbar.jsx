@@ -18,22 +18,10 @@ const Navbar = (props) => {
       </div>
       <div className={s.item}>
         <NavLink to="/receptions" activeClassName={s.active}>Receptions</NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to="/messages" activeClassName={s.active}>Messages</NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to="/customers" activeClassName={s.active}>Customers</NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to="/sidebar" activeClassName={s.active}>Sidebar</NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to="/medicines" activeClassName={s.active}>Medicines</NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to="/add" activeClassName={s.active}>Add</NavLink>
-      </div>
+    </div>
+        <div className={s.item}>
+            <NavLink to="/todolist" activeClassName={s.active}>ToDoList</NavLink>
+        </div>
     </nav>
 
 
