@@ -6,14 +6,13 @@ import authReducer from "./authReduser";
 import thunkMiddleware from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
 import appReducer from "./appReduser";
-import toDoListReducer from "./todoListReduser";
+
 
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogReducer,
     usersPage: usersReducer,
-    listPage: toDoListReducer,
     auth: authReducer,
     form: formReducer,
     app: appReducer

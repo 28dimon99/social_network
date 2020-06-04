@@ -75,11 +75,5 @@ export const securityAPI ={
 
 };
 
-//Запрос todoList
-export const todoListAPI = {
-  getToDoListUrl(/*id, addedDate, order, title*/){
-    return instanse.get(`todo-lists`/*+ id, addedDate, order, title */)
-  }
-};
 
 
